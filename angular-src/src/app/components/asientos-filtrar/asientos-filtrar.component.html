@@ -1,0 +1,63 @@
+<h1>Filtrar Asientos</h1>
+<form (submit) = "onFiltrar()">
+  <div class="form-group" >
+    <label>Cuenta a Filtrar</label>
+    <select name="cuenta" [(ngModel)]="cuenta" type="text" class="form-control">
+      <option>Caja</option>
+      <option>Proveedores</option>
+      <option>Mercaderia</option>
+    </select>
+  </div>
+  <br>
+  <input type="submit" value="Filtrar" class="btn btn-default">
+</form>
+<br>
+<div class="container" *ngIf="asiento">
+  <ul>
+    <li class = "list-group-item" *ngFor="let a of asiento; let i=index">
+      <legend>Saldo Inicial Cuenta {{ cuenta }}: <span class="pull-right">{{ saldoInicial }}</span> </legend>
+      <legend>Balance <span class="pull-right">{{ balance.resultado }}</span></legend>
+      <br>      
+      <label>Asiento Nº {{ i + 1 }}</label>
+      <div class="row">
+        <div class="col-md-2">
+          <label>Fecha</label>
+          <h4>{{ a.fecha }}</h4>
+        </div>
+        <div class="col-md-5">
+          <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Concepto Debe</th>
+                  <th>Monto Debe</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="active" *ngFor="let c of a.debe; let i=index">
+                  <td> {{ c.concepto }} </td>
+                  <td> {{ c.monto }} </td>
+                </tr>     
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-5">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Concepto Haber</th>
+                <th>Monto Haber</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="info" *ngFor="let c of a.haber; let i=index">
+                <td> {{ c.concepto }} </td>
+                <td> {{ c.monto }} </td>
+              </tr>     
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </li>
+         
+  </ul>
+</div>

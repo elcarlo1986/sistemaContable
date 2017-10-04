@@ -1,0 +1,25 @@
+{
+  "name": "sistemacontable",
+  "version": "1.0.0",
+  "description": "Sistema MEAN",
+  "main": "app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Tortugas",
+  "license": "ISC",
+  "devDependencies": {
+    "@angular/cli": "^1.4.3"
+  }
+}

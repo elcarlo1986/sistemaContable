@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      
+      <a class="navbar-brand" href="/">Sistema Contable</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a routerLink = "/" routerLinkActive = "active">Inicio</a></li>
+        <li><a routerLink = "about" routerLinkActive = "active">Acerca De</a></li>
+      </ul>
+      <ul class="nav navbar-nav" *ngIf = "authService.loggedIn()">
+        <li class="dropdown" appDropdown>
+          <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Herramientas<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li role="menuitem"  routerLinkActive = "active" [routerLinkActiveOptions] = "{exact:true}"><a class="dropdown-item" routerLink = "asientosRealizados">Asientos Realizados</a></li>
+            <li role="menuitem"  routerLinkActive = "active" [routerLinkActiveOptions] = "{exact:true}"><a class="dropdown-item" routerLink = "asientosAgregar">Agregar Asiento</a></li>
+            <li role="menuitem"  routerLinkActive = "active" [routerLinkActiveOptions] = "{exact:true}"><a class="dropdown-item" routerLink = "asientosFiltrar">Filtrar Asientos</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" appDropdown>
+          <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li role="menuitem" *ngIf = "authService.loggedIn()" routerLinkActive = "active" [routerLinkActiveOptions] = "{exact:true}"><a class="dropdown-item" routerLink = "profile">Perfil</a></li>
+            <li role="menuitem" *ngIf = "!authService.loggedIn()" routerLinkActive = "active" [routerLinkActiveOptions] = "{exact:true}"><a class="dropdown-item" routerLink = "login">Iniciar Sesion</a></li>
+            <li role="menuitem" *ngIf = "!authService.loggedIn()" routerLinkActive = "active" [routerLinkActiveOptions] = "{exact:true}"><a class="dropdown-item" routerLink = "register">Registrarse</a></li>
+            <li role="menuitem" *ngIf = "authService.loggedIn()"><a class="dropdown-item" (click)="onLogoutClick()" href= "#">Cerrar Sesion</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
