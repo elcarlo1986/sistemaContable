@@ -21,11 +21,7 @@ export class AsientosFiltrarComponent implements OnInit {
 
   saldoInicial = 100000;
 
-  balance = {
-    balance: 0,
-    montoDebe: 0,
-    montoHaber: 0
-  };
+  balance: Balance[];
 
   constructor(
     private authService: AuthService,
@@ -64,6 +60,7 @@ export class AsientosFiltrarComponent implements OnInit {
   }
 
   getBalance(asiento, balance){
+    balance[0].saldo = this.saldoInicial;
 
     for (let i = 0; i < asiento.length; i++) {
       balance[i].fecha = asiento[i].fecha;
