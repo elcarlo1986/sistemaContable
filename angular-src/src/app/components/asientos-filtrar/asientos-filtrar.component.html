@@ -12,52 +12,88 @@
   <input type="submit" value="Filtrar" class="btn btn-default">
 </form>
 <br>
-<!-- <div class="container" *ngIf="asiento">
+
+
+<div class="container" *ngIf="asiento">
   <ul>
-    <li class = "list-group-item" *ngFor="let a of asiento; let i=index">
-      <legend>Saldo Inicial Cuenta {{ cuenta }}: <span class="pull-right">{{ saldoInicial }}</span> </legend>
-      <legend>Balance <span class="pull-right">{{ balance.resultado }}</span></legend>
+      <legend>{{ cuenta }}</legend>
       <br>      
-      <label>Asiento Nº {{ i + 1 }}</label>
       <div class="row">
-        <div class="col-md-2">
-          <label>Fecha</label>
-          <h4>{{ a.fecha }}</h4>
-        </div>
-        <div class="col-md-5">
+          <div class="col-md-5">
           <table class="table table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Concepto Debe</th>
-                  <th>Monto Debe</th>
+                  <th>Fecha</th>
+                  <th>Debe</th>
+                  <th>Haber</th>
+                  <th>Saldo</th>
+                </tr>
+              </thead> 
+              <tbody>
+                  <li class = "list-group-item" *ngFor="let b of balance; let i=index">
+                    <td>{{b.fecha}}</td>
+                    <td>{{b.debe}}</td>
+                    <td>{{b.haber}}</td>
+                    <td>{{b.saldo}}</td>
+                  </li>
+              </tbody>
+          </table>
+        </div>
+       
+      </div>
+    
+         
+  </ul>
+</div>
+
+
+
+<!-- 
+<div class="container" *ngIf="asiento">
+    <ul>
+      <li class = "list-group-item" *ngFor="let a of asiento; let i=index">
+        <legend>{{ cuenta }}</legend>
+        <br>      
+        <label>Asiento Nº {{ i + 1 }}</label>
+        <div class="row">
+          <div class="col-md-2">
+            <label>Fecha</label>
+            <h4>{{ a.fecha }}</h4>
+          </div>
+          <div class="col-md-5">
+            <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>Concepto Debe</th>
+                    <th>Monto Debe</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="active" *ngFor="let c of a.debe; let i=index">
+                    <td> {{ c.concepto }} </td>
+                    <td> {{ c.monto }} </td>
+                  </tr>     
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-5">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Concepto Haber</th>
+                  <th>Monto Haber</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="active" *ngFor="let c of a.debe; let i=index">
+                <tr class="info" *ngFor="let c of a.haber; let i=index">
                   <td> {{ c.concepto }} </td>
                   <td> {{ c.monto }} </td>
                 </tr>     
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="col-md-5">
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Concepto Haber</th>
-                <th>Monto Haber</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="info" *ngFor="let c of a.haber; let i=index">
-                <td> {{ c.concepto }} </td>
-                <td> {{ c.monto }} </td>
-              </tr>     
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </li>
-         
-  </ul>
-</div> -->
+      </li>
+           
+    </ul>
+  </div> -->
