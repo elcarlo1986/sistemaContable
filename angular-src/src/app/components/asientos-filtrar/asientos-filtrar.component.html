@@ -14,36 +14,31 @@
 <br>
 
 
-<div class="container" *ngIf="asiento">
-  <ul>
-      <legend>{{ cuenta }}</legend>
-      <br>      
-      <div class="row">
-          <div class="col-md-5">
-          <table class="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Debe</th>
-                  <th>Haber</th>
-                  <th>Saldo</th>
-                </tr>
-              </thead> 
-              <tbody>
-                  <li class = "list-group-item" *ngFor="let b of balance; let i=index">
-                    <td>{{b.fecha}}</td>
-                    <td>{{b.debe}}</td>
-                    <td>{{b.haber}}</td>
-                    <td>{{b.saldo}}</td>
-                  </li>
-              </tbody>
-          </table>
-        </div>
-       
+<div class="container" *ngIf="mostrar">
+    <legend>{{ cuenta }}</legend>
+    <br>      
+    <div class="row">
+        <div class="col-md-5">
+        <table class="table table-striped table-hover" >
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Debe</th>
+                <th>Haber</th>
+                <th>Saldo</th>
+              </tr>
+            </thead> 
+            <tbody>
+                <li class = "list-group-item" *ngFor="let b of balance; let i=index">
+                  <td>{{b.fecha}}</td>
+                  <td>{{b.debe}}</td>
+                  <td>{{b.haber}}</td>
+                  <td>{{b.saldo}}</td>
+                </li>
+            </tbody>
+        </table>
       </div>
-    
-         
-  </ul>
+    </div>     
 </div>
 
 

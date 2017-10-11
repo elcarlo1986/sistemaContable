@@ -19,9 +19,11 @@ export class AsientosFiltrarComponent implements OnInit {
 
   cuenta: String;
 
+  mostrar = false;
+
   saldoInicial = 100000;
 
-  balance: Balance[];
+  balance: Balance[] = [];
 
   constructor(
     private authService: AuthService,
@@ -48,12 +50,13 @@ export class AsientosFiltrarComponent implements OnInit {
     
     console.log(this.asiento);
 
-    // if(this.asiento != []){
-    //   this.getBalance(this.asiento, this.balance);
-    // }else{
-    //   this.flashMessage.show('No exiten asientos con la cuenta seleccionada', {cssClass: 'alert-danger', timeout: 3000});
-    //   this.router.navigate(['/asientosFiltrar']);
-    // }
+    if(this.asiento.length !== 0){
+      this.getBalance(this.asiento, this.balance);
+      this.mostrar = true;
+    }else{
+      this.flashMessage.show('No exiten asientos con la cuenta seleccionada', {cssClass: 'alert-danger', timeout: 3000});
+      this.router.navigate(['/asientosFiltrar']);
+    }
 
 
 
@@ -66,19 +69,22 @@ export class AsientosFiltrarComponent implements OnInit {
       balance[i].fecha = asiento[i].fecha;
       for (let j = 0; j < asiento[i].conceptoDebe.length; j++) {
         if(asiento[i].conceptoDebe[j].concepto = this.cuenta){
-          balance[i].debe = asiento.conceptoDebe[j].monto;
+          balance[i].debe = asiento[i].conceptoDebe[j].monto;
           balance[i].haber = 0;
-          balance[i].saldo += asiento.conceptoDebe[j].monto
+          balance[i].saldo += asiento[i].conceptoDebe[j].monto
         }
       }
       for (let j = 0; j < asiento[i].conceptoHaber.length; j++) {
         if(asiento[i].conceptoHaber[j].concepto = this.cuenta){
-          balance[i].heber = asiento.conceptoHaber[j].monto;
+          balance[i].heber = asiento[i].conceptoHaber[j].monto;
           balance[i].debe = 0;
-          balance[i].saldo -= asiento.conceptoDebe[j].monto      
+          balance[i].saldo -= asiento[i].conceptoHaber[j].monto      
         }
       }
+
     }
+  
+  console.log(balance);
 
   //   let montoDebe = 0;
   //   let montoHaber = 0;
