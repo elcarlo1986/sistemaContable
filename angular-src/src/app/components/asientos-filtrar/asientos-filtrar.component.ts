@@ -19,8 +19,6 @@ export class AsientosFiltrarComponent implements OnInit {
 
   cuenta: String;
 
-  mostrar = false;
-
   saldoInicial = 100000;
 
   balance: Balance[] = [];
@@ -51,8 +49,7 @@ export class AsientosFiltrarComponent implements OnInit {
     console.log(this.asiento);
 
     if(this.asiento.length !== 0){
-      this.getBalance(this.asiento, this.balance);
-      this.mostrar = true;
+      this.getBalance(this.asiento);
     }else{
       this.flashMessage.show('No exiten asientos con la cuenta seleccionada', {cssClass: 'alert-danger', timeout: 3000});
       this.router.navigate(['/asientosFiltrar']);
@@ -62,29 +59,33 @@ export class AsientosFiltrarComponent implements OnInit {
 
   }
 
-  getBalance(asiento, balance){
-    balance[0].saldo = this.saldoInicial;
+  getBalance(asiento){
+
+    let saldo = this.saldoInicial;
 
     for (let i = 0; i < asiento.length; i++) {
-      balance[i].fecha = asiento[i].fecha;
+      this.balance[i].fecha = asiento[i].fecha;
+      
+
       for (let j = 0; j < asiento[i].conceptoDebe.length; j++) {
         if(asiento[i].conceptoDebe[j].concepto = this.cuenta){
-          balance[i].debe = asiento[i].conceptoDebe[j].monto;
-          balance[i].haber = 0;
-          balance[i].saldo += asiento[i].conceptoDebe[j].monto
+          this.balance[i].debe = asiento[i].conceptoDebe[j].monto;
+          this.balance[i].debe = 0;
+          saldo += asiento[i].conceptoDebe[j].monto;
+          this.balance[i].saldo = saldo
         }
       }
       for (let j = 0; j < asiento[i].conceptoHaber.length; j++) {
         if(asiento[i].conceptoHaber[j].concepto = this.cuenta){
-          balance[i].heber = asiento[i].conceptoHaber[j].monto;
-          balance[i].debe = 0;
-          balance[i].saldo -= asiento[i].conceptoHaber[j].monto      
+          this.balance[i].haber = asiento[i].conceptoHaber[j].monto;
+          this.balance[i].debe = 0;
+          saldo -= asiento[i].conceptoHaber[j].monto;
+          this.balance[i].saldo = saldo;    
         }
       }
-
     }
   
-  console.log(balance);
+  console.log(this.balance);
 
   //   let montoDebe = 0;
   //   let montoHaber = 0;

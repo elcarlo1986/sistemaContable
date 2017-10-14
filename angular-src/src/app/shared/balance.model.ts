@@ -1,11 +1,11 @@
 export class Balance {
     
     public fecha: String;
-    public debe: [Number];
-    public haber: [Number];
-    public saldo: [Number];
+    public debe: Number;
+    public haber: Number;
+    public saldo: Number;
 
-    constructor(fecha: String, debe: [Number], haber: [Number], saldo: [number]){
+    constructor(fecha: String, debe: Number, haber: Number, saldo: Number){
         this.fecha = fecha;
         this.debe = debe;
         this.haber = haber;
