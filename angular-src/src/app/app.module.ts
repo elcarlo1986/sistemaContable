@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AsientosAgregarComponent } from './components/asientos-agregar/asientos-agregar.component';
 import { AsientosRealizadosComponent } from './components/asientos-realizados/asientos-realizados.component';
 import { AsientosFiltrarComponent } from './components/asientos-filtrar/asientos-filtrar.component';
+import { AsientosFechaComponent } from './components/asientos-fecha/asientos-fecha.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   {path: 'asientosAgregar', component: AsientosAgregarComponent,canActivate:[AuthGuard]},
   {path: 'asientosRealizados', component: AsientosRealizadosComponent, canActivate:[AuthGuard]},
   {path: 'asientosFiltrar', component: AsientosFiltrarComponent, canActivate:[AuthGuard]},
+  {path: 'asientosFecha', component: AsientosFechaComponent, canActivate:[AuthGuard]},  
   {path: 'about', component: AboutComponent}
 ]
 
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     AsientosFiltrarComponent,
     AboutComponent,
     ProfileComponent,
-    DropdownDirective
+    DropdownDirective,
+    AsientosFechaComponent
   ],
   imports: [
     BrowserModule,

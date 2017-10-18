@@ -1,0 +1,61 @@
+<h1>Filtrar Asientos Por Periodo</h1>
+<form (submit) = "onFiltrar()">
+  <div class="form-group" >
+    <label>Fecha de Inicio</label>
+    <input class = "form-control" type="date" name="fechaInicio" [(ngModel)]="fechaInicio">
+    
+  </div>
+  <div class="form-group" >
+    <label>Fecha Fin </label>
+    <input class = "form-control" type="date"name="fechaFin" [(ngModel)]="fechaFin">
+   
+  </div>
+  <br>
+  <input type="submit" value="Filtrar" class="btn btn-default">
+</form>
+<br>
+
+<ul>
+  <li class = "list-group-item" *ngFor="let a of asientos; let i=index">
+    <label>Asiento Nº {{ i + 1 }}</label>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Fecha</label>
+        <h4>{{ a.fecha }}</h4>
+      </div>
+      <div class="container-fluid">
+        <legend>{{ cuenta }}</legend>
+        <br>      
+            <table class="table table-striped table-hover " >
+              <thead>
+                <tr>
+                  <th>Concepto Debe</th>
+                  <th>Concepto Haber</th>
+                  <th>Monto Debe</th>
+                  <th>Monto Haber</th>
+                </tr>
+              </thead> 
+              <tbody > 
+                <tr *ngFor="let debe of a.debe">
+                  
+                  <td>{{debe.concepto}}</td>
+                  <td></td>
+                  <td>{{debe.monto}}</td>
+                  <td></td>
+  
+                </tr>
+                <tr *ngFor="let haber of a.haber">
+                    
+                    <td></td>
+                    <td>{{haber.concepto}}</td>
+                    <td></td>
+                    <td>{{haber.monto}}</td>
+  
+                  </tr>
+              </tbody>
+      
+            </table>               
+      </div>
+    </div>
+  </li>
+</ul>

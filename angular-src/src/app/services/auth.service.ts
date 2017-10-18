@@ -76,14 +76,14 @@ export class AuthService {
   }
 
   getFiltrarAsientos(cuenta){
-    // let headers = new Headers();
-    // let params = new URLSearchParams();
-    // this.loadToken();
-    // headers.append('Authorization', this.authToken);
-    // headers.append('Content-Type', 'application/json');
-    // params.append('concepto', cuenta);
-    // let options = new RequestOptions({headers: headers, params: params});    
-    return this.http.get('http://localhost:3000/asientos/filtrar?concepto='+cuenta)
+    let headers = new Headers();
+    let params = new URLSearchParams();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    params.append('concepto', cuenta);
+    let options = new RequestOptions({headers: headers, params: params});    
+    return this.http.get('http://localhost:3000/asientos/filtrar/cuenta' , options)
       .map(res => res.json())
       .map(asientos => {
         return asientos.map(asiento =>{
@@ -95,7 +95,27 @@ export class AuthService {
         })
       });
   }
-
-
+  getFiltrarAsientosFecha(fechaInicio, fechaFin){
+    let headers = new Headers();
+    let params = new URLSearchParams();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    params.append('fechaInicio', fechaInicio);
+    params.append('fechaFin', fechaFin);
+    
+    let options = new RequestOptions({headers: headers, params: params});    
+    return this.http.get('http://localhost:3000/asientos/filtrar/fecha', options)
+      .map(res => res.json())
+      .map(asientos => {
+        return asientos.map(asiento =>{
+          return {
+            fecha: asiento.fecha,
+            debe: asiento.debe,
+            haber: asiento.haber
+          };
+        })
+    });
+  }
 
 }

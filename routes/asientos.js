@@ -33,13 +33,24 @@ router.get('/guardados', (req, res, next) => {
 });
 
 // Filtrar asientos
-router.get('/filtrar', (req, res, next) => {
+//Por cuenta
+router.get('/filtrar/cuenta', (req, res, next) => {
     let query = {$or: [ {'debe.concepto': req.query.concepto}, {'haber.concepto':req.query.concepto} ]};
     Asiento.getFiltrarAsientos(query, (err, asientos) => {
         if(err) return res.json(err);
         res.json(asientos);
     });
 });
+
+//Por fecha
+router.get('/filtrar/fecha', (req, res, next) => {
+    let query = {$and: [ {'fecha': {$gte: req.query.fechaInicio}}, {'fecha': {$lte: req.query.fechaFin}}]};
+    Asiento.getFiltrarAsientos(query, (err, asientos) => {
+        if(err) return res.json(err);
+        res.json(asientos);
+    });
+});
+
 
 
 
