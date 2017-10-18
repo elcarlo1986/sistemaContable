@@ -20,6 +20,8 @@ export class AsientosFiltrarComponent implements OnInit {
 
   cuenta: string;
 
+  mostrar = false;
+
   saldoInicial: number = 100000;
 
   balances: Balance[] = [];
@@ -43,6 +45,7 @@ export class AsientosFiltrarComponent implements OnInit {
     this.authService.getFiltrarAsientos(this.cuenta).subscribe(asientos => {
       this.asientos = asientos;
       if(this.asientos){
+        this.mostrar = true;
         this.getBalance();
         console.log(this.asientos);
         console.log(this.balances);
