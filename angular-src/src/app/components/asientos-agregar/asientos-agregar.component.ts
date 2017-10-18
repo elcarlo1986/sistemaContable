@@ -30,8 +30,8 @@ export class AsientosAgregarComponent implements OnInit {
 
     this.myForm = this.formBuilder.group({
       fecha: ['', [Validators.required]],
-      conceptoDebe: this.formBuilder.array([this.initConcepto()]),
-      conceptoHaber: this.formBuilder.array([this.initConcepto()])
+      debe: this.formBuilder.array([this.initConcepto()]),
+      haber: this.formBuilder.array([this.initConcepto()])
     });
   }
 
@@ -45,24 +45,24 @@ export class AsientosAgregarComponent implements OnInit {
 
   addConceptoDebe() {
     // add concepto to the list
-    const control = <FormArray>this.myForm.controls['conceptoDebe'];
+    const control = <FormArray>this.myForm.controls['debe'];
     control.push(this.initConcepto());
   }
   addConceptoHaber() {
     // add concepto to the list
-    const control = <FormArray>this.myForm.controls['conceptoHaber'];
+    const control = <FormArray>this.myForm.controls['haber'];
     control.push(this.initConcepto());
   }
 
   removeConceptoDebe(i: number) {
     // remove concepto from the list
-    const control = <FormArray>this.myForm.controls['conceptoDebe'];
+    const control = <FormArray>this.myForm.controls['debe'];
     control.removeAt(i);
   }
 
   removeConceptoHaber(i: number) {
     // remove concepto from the list
-    const control = <FormArray>this.myForm.controls['conceptoHaber'];
+    const control = <FormArray>this.myForm.controls['haber'];
     control.removeAt(i);
   }
 

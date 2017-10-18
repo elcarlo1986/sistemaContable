@@ -14,7 +14,7 @@
 <br>
 
 
-<div class="container" *ngIf="balance.length !== 0">
+<!-- <div class="container" *ngIf="balances !== []">
     <legend>{{ cuenta }}</legend>
     <br>      
     <div class="row">
@@ -29,17 +29,17 @@
               </tr>
             </thead> 
             <tbody>
-                <li class = "list-group-item" *ngFor="let b of balance; let i=index">
-                  <td>{{b.fecha}}</td>
-                  <td>{{b.debe}}</td>
-                  <td>{{b.haber}}</td>
-                  <td>{{b.saldo}}</td>
+                <li class = "list-group-item" *ngFor="let b of balances">
+                  <td>{{b?.fecha}}</td>
+                  <td>{{b?.debe}}</td>
+                  <td>{{b?.haber}}</td>
+                  <td>{{b?.saldo}}</td>
                 </li>
             </tbody>
         </table>
       </div>
     </div>     
-</div>
+</div> -->
 
 
 

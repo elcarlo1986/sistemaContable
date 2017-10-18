@@ -10,12 +10,12 @@
       </small>
     </div>
     <hr>
-    <div formArrayName="conceptoDebe">
+    <div formArrayName="debe">
       <div *ngFor="let concepto of myForm.controls.conceptoDebe.controls; let i=index">
         <!-- address header, show remove button when more than one concepto available -->
         <div class="form-group">
           <span>Concepto Debe {{i + 1}}</span>
-          <button type="button" class = "btn btn-success pull-right" *ngIf="myForm.controls.conceptoDebe.controls.length > 1" (click)="removeConceptoDebe(i)">Eliminar concepto</button>
+          <button type="button" class = "btn btn-success pull-right" *ngIf="myForm.controls.debe.controls.length > 1" (click)="removeConceptoDebe(i)">Eliminar concepto</button>
         </div>
 
         <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
@@ -29,7 +29,7 @@
               <option>Mercaderia</option>
             </select>
             <!--display error message if street is not valid-->
-            <small [hidden]="myForm.controls.conceptoDebe.controls[i].controls.concepto.valid" class="text-danger">
+            <small [hidden]="myForm.controls.debe.controls[i].controls.concepto.valid" class="text-danger">
               Concepto es requerido
             </small>
           </div>
@@ -37,7 +37,7 @@
           <div class="form-group">
             <label class="control-label">Monto</label>
             <input class = "form-control" type="text" formControlName="monto">
-            <small [hidden]="myForm.controls.conceptoDebe.controls[i].controls.monto.valid" class="text-danger">
+            <small [hidden]="myForm.controls.debe.controls[i].controls.monto.valid" class="text-danger">
               Monto es requerido
             </small>
           </div>
@@ -47,11 +47,11 @@
     <button type="button" class = "btn btn-success pull-right" (click) = "addConceptoDebe()">Agregar Debe</button>    
     <br>
     <hr>
-    <div formArrayName="conceptoHaber">
-      <div *ngFor="let concepto of myForm.controls.conceptoHaber.controls; let i=index">
+    <div formArrayName="haber">
+      <div *ngFor="let concepto of myForm.controls.haber.controls; let i=index">
         <div class="form-group">
           <span>Concepto Haber {{i + 1}}</span>
-          <button type="button" class = "btn btn-success pull-right" *ngIf="myForm.controls.conceptoHaber.controls.length > 1" (click)="removeConceptoHaber(i)">Eliminar concepto</button>
+          <button type="button" class = "btn btn-success pull-right" *ngIf="myForm.controls.haber.controls.length > 1" (click)="removeConceptoHaber(i)">Eliminar concepto</button>
         </div>
         <div [formGroupName]="i">
           <!--concepto-->
@@ -62,7 +62,7 @@
               <option>Proveedores</option>
               <option>Mercaderia</option>
             </select>
-            <small [hidden]="myForm.controls.conceptoHaber.controls[i].controls.concepto.valid" class="text-danger">
+            <small [hidden]="myForm.controls.haber.controls[i].controls.concepto.valid" class="text-danger">
               Concepto es requerido
             </small>
           </div>
@@ -70,7 +70,7 @@
           <div class="form-group">
             <label class="control-label">Monto</label>
             <input class = "form-control" type="text" formControlName="monto">
-            <small [hidden]="myForm.controls.conceptoHaber.controls[i].controls.monto.valid" class="text-danger">
+            <small [hidden]="myForm.controls.haber.controls[i].controls.monto.valid" class="text-danger">
               Monto es requerido
             </small>
           </div>

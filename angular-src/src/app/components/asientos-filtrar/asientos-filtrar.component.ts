@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 
+
 import { Asiento, Concepto } from "../../shared/asiento.model";
 import { FlashMessagesService } from "angular2-flash-messages";
 import { Balance } from "../../shared/balance.model";
@@ -15,96 +16,89 @@ import { Balance } from "../../shared/balance.model";
 })
 export class AsientosFiltrarComponent implements OnInit {
 
-  asiento: Asiento[] = [];
+  asientos: Asiento[];
 
-  cuenta: String;
+  cuenta: string;
 
-  saldoInicial = 100000;
+  saldoInicial: number = 100000;
 
-  balance: Balance[] = [];
+  balances: Balance[] = [];
 
   constructor(
     private authService: AuthService,
     private flashMessage: FlashMessagesService,  
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
 
+   
+    
     
   }
+
 
   onFiltrar(){
 
-    let query = { "concepto": this.cuenta };
-
-    this.authService.getFiltrarAsientos(query).subscribe(asientos => {
-      this.asiento = asientos;
-    },
-    err => {
-      console.log(err);
-      return false;
+    this.authService.getFiltrarAsientos(this.cuenta).subscribe(asientos => {
+      this.asientos = asientos;
+      if(this.asientos){
+        this.getBalance();
+        console.log(this.asientos);
+        console.log(this.balances);
+        
+      }else{
+        this.flashMessage.show('No exiten asientos con la cuenta seleccionada', {cssClass: 'alert-danger', timeout: 3000});
+        this.router.navigate(['/asientosFiltrar']);
+      }
+   
+      },
+      err => {
+        console.log(err);
+        return false;
     });
+
     
-    console.log(this.asiento);
-
-    if(this.asiento.length !== 0){
-      this.getBalance(this.asiento);
-    }else{
-      this.flashMessage.show('No exiten asientos con la cuenta seleccionada', {cssClass: 'alert-danger', timeout: 3000});
-      this.router.navigate(['/asientosFiltrar']);
-    }
-
 
 
   }
 
-  getBalance(asiento){
+  getBalance(){
+
+    this.balances = [];
 
     let saldo = this.saldoInicial;
 
-    for (let i = 0; i < asiento.length; i++) {
-      this.balance[i].fecha = asiento[i].fecha;
+    let balance: Balance = {fecha: '', debe: 0 , haber: 0, saldo: 0};
+
+    for (let asiento of this.asientos) {
+
+      let balance: Balance = {fecha: '', debe: 0 , haber: 0, saldo: 0};
+      
+      
+      balance.fecha = asiento.fecha;
       
 
-      for (let j = 0; j < asiento[i].conceptoDebe.length; j++) {
-        if(asiento[i].conceptoDebe[j].concepto = this.cuenta){
-          this.balance[i].debe = asiento[i].conceptoDebe[j].monto;
-          this.balance[i].debe = 0;
-          saldo += asiento[i].conceptoDebe[j].monto;
-          this.balance[i].saldo = saldo
+      for (let j = 0; j < asiento.debe.length; j++) {
+        if(asiento.debe[j].concepto === this.cuenta){
+          balance.debe = asiento.debe[j].monto;
+          balance.haber = 0;
+          saldo = saldo + balance.debe;
         }
       }
-      for (let j = 0; j < asiento[i].conceptoHaber.length; j++) {
-        if(asiento[i].conceptoHaber[j].concepto = this.cuenta){
-          this.balance[i].haber = asiento[i].conceptoHaber[j].monto;
-          this.balance[i].debe = 0;
-          saldo -= asiento[i].conceptoHaber[j].monto;
-          this.balance[i].saldo = saldo;    
+
+      for (let j = 0; j < asiento.haber.length; j++) {
+        if(asiento.haber[j].concepto === this.cuenta){
+          balance.haber = asiento.haber[j].monto;
+          balance.debe = 0;
+          saldo = saldo - balance.haber;
         }
       }
+
+      balance.saldo = saldo;
+
+      this.balances.push(balance);
     }
-  
-  console.log(this.balance);
-
-  //   let montoDebe = 0;
-  //   let montoHaber = 0;
-
-  //   for (let i = 0; i < asiento.length; i++) {
-  //     for (let j = 0; j < asiento[i].conceptoDebe.length; j++) {
-  //       montoDebe += asiento[i].conceptoDebe[j].monto;
-  //     }
-      
-  //     for (let k = 0; k < asiento[i].conceptoHaber.length; k++) {
-  
-  //       montoHaber += asiento[i].conceptoHaber[k].monto;
-        
-  //     }
-  //   }
-
-  //   balance.resultado = this.saldoInicial + montoDebe - montoHaber;
-  //   balance.montoDebe = montoDebe;
-  //   balance.montoHaber = montoHaber;   
   }
 
 

@@ -33,8 +33,8 @@ router.get('/guardados', (req, res, next) => {
 });
 
 // Filtrar asientos
-router.post('/filtrar', (req, res, next) => {
-    let query = {$or: [ {'debe.concepto': req.body.concepto}, {'haber.concepto':req.body.concepto} ]};
+router.get('/filtrar', (req, res, next) => {
+    let query = {$or: [ {'debe.concepto': req.query.concepto}, {'haber.concepto':req.query.concepto} ]};
     Asiento.getFiltrarAsientos(query, (err, asientos) => {
         if(err) return res.json(err);
         res.json(asientos);

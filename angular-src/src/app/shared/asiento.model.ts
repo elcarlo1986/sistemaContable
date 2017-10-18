@@ -1,22 +1,22 @@
 export class Asiento {
     
-    public fecha: String;
-    public conceptoDebe: [Concepto];
-    public conceptoHaber: [Concepto];
+    public fecha: string;
+    public debe: [Concepto];
+    public haber: [Concepto];
 
-    constructor(fecha: String, conceptoDebe: [Concepto], conceptoHaber: [Concepto]){
+    constructor(fecha: string, debe: [Concepto], haber: [Concepto]){
         this.fecha = fecha;
-        this.conceptoDebe = conceptoDebe;
-        this.conceptoHaber = conceptoHaber
+        this.debe = debe;
+        this.haber = haber;
     }
     
 }
 
 export class Concepto{
-    public concepto: String;
-    public monto: Number;
+    public concepto: string;
+    public monto: number;
 
-    constructor(concepto: String, monto: Number){
+    constructor(concepto: string, monto: number){
         this.concepto = concepto;
         this.monto = monto;
 
