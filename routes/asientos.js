@@ -11,8 +11,8 @@ router.post('/agregar', (req, res, next) =>{
 
     let nuevoAsiento = new Asiento({
         fecha: req.body.fecha,
-        debe: req.body.conceptoDebe,
-        haber: req.body.conceptoHaber,
+        debe: req.body.debe,
+        haber: req.body.haber,
     });
 
     Asiento.addAsiento(nuevoAsiento, (err, asiento) => {

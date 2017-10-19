@@ -80,10 +80,10 @@ export class AsientosAgregarComponent implements OnInit {
     this.authService.saveAsiento(asiento).subscribe(data => {
       if(data.success){
         this.flashMessage.show('Asiento agregado', {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/asientoAgregar']);
+        this.router.navigate(['/asientosAgregar']);
       }else{
         this.flashMessage.show('Ha ocurrido un error', {cssClass: 'alert-danger', timeout: 3000});
-        this.router.navigate(['/asientoAgregar']);
+        this.router.navigate(['/asientosAgregar']);
       }
     });
   }
