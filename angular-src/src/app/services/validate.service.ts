@@ -21,13 +21,13 @@ export class ValidateService {
   validateAsiento(asiento){
     let montoDebe: number = 0;
     let montoHaber: number = 0;
-    for (let i = 0; i < asiento.conceptoDebe.length; i++) {
-      let monto = parseFloat(asiento.conceptoDebe[i].monto);
+    for (let i = 0; i < asiento.debe.length; i++) {
+      let monto = parseFloat(asiento.debe[i].monto);
       montoDebe = montoDebe + monto; 
     }
 
-    for (let i = 0; i < asiento.conceptoHaber.length; i++) {
-      let monto = parseFloat(asiento.conceptoHaber[i].monto);
+    for (let i = 0; i < asiento.haber.length; i++) {
+      let monto = parseFloat(asiento.haber[i].monto);
       montoHaber = montoHaber + monto;
     }
 
